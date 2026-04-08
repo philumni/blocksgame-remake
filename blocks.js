@@ -485,6 +485,9 @@ gameProto._updatePreviews = function() {
 gameProto._bindKeys = function() {
   var self = this;
   addEventListener("keydown", function(e) {
+    if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"].indexOf(e.code) !== -1) {
+      e.preventDefault();
+    }
     if (self.over) return;
     switch (e.code) {
       case "ArrowUp":      self._rotate();      break;

@@ -40,7 +40,7 @@ body {
 
 body {
   margin: 0;
-  padding: 32px 20px 40px;
+  padding: 18px 20px 28px;
   background:
     radial-gradient(circle at top left, rgba(111, 231, 255, 0.16), transparent 28%),
     radial-gradient(circle at top right, rgba(255, 143, 63, 0.14), transparent 24%),
@@ -73,18 +73,21 @@ body::before {
   z-index: 1;
   width: min(1180px, 100%);
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 220px minmax(280px, 1fr) 260px;
+  column-gap: 24px;
+  row-gap: 12px;
+  align-items: start;
 }
 
 .hero {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  align-items: end;
-  margin-bottom: 28px;
+  display: contents;
 }
 
 .hero-copy {
-  max-width: 620px;
+  grid-column: 1;
+  align-self: start;
+  max-width: 100%;
 }
 
 .eyebrow,
@@ -125,8 +128,10 @@ body::before {
 }
 
 .hero-notes {
+  grid-column: 3;
+  align-self: start;
   min-width: min(310px, 100%);
-  max-width: 340px;
+  max-width: 100%;
   padding: 18px 20px;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -146,17 +151,13 @@ body::before {
 /* ─── 3-column layout ────────────────────────────────────────────────────── */
 
 #game-container {
-  display: grid;
-  grid-template-columns: 220px minmax(280px, 1fr) 260px;
-  grid-template-areas: "preview board controls";
-  gap: 24px;
-  align-items: start;
+  display: contents;
 }
 
 /* ─── Column 1: sidebar (preview boards) ─────────────────────────────────── */
 
 #sidebar {
-  grid-area: preview;
+  grid-column: 1;
 }
 
 #sidebar .panel-head h2 {
@@ -164,7 +165,7 @@ body::before {
 }
 
 #controls-col {
-  grid-area: controls;
+  grid-column: 3;
 }
 
 .panel,
@@ -211,7 +212,7 @@ body::before {
 /* ─── Column 2: game board ───────────────────────────────────────────────── */
 
 #board-col {
-  grid-area: board;
+  grid-column: 2;
 }
 
 .preview-table,
@@ -406,20 +407,43 @@ kbd {
 }
 
 @media (max-width: 1080px) {
+  .app-shell {
+    display: block;
+  }
+
   #game-container {
+    display: grid;
     grid-template-columns: minmax(0, 1fr) 260px;
     grid-template-areas:
       "board board"
       "preview controls";
+    gap: 24px;
+    align-items: start;
   }
 
   .hero {
     flex-direction: column;
     align-items: start;
+    display: flex;
+    margin-bottom: 18px;
   }
 
+  .hero-copy,
   .hero-notes {
+    grid-column: auto;
     max-width: 100%;
+  }
+
+  #board-col {
+    grid-area: board;
+  }
+
+  #sidebar {
+    grid-area: preview;
+  }
+
+  #controls-col {
+    grid-area: controls;
   }
 }
 
