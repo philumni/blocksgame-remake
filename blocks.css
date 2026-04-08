@@ -159,6 +159,10 @@ body::before {
   grid-area: preview;
 }
 
+#sidebar .panel-head h2 {
+  margin-bottom: 18px;
+}
+
 #controls-col {
   grid-area: controls;
 }

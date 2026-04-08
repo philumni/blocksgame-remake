@@ -402,7 +402,7 @@ cursorProto.peekOrderedShape = function() {
 
 // The type queue as cropped 4x4 shapes for preview boards, index 0 = next up.
 cursorProto.getQueueShapes = function() {
-  return this.typeQueue.map(function(type) {
+  return this.typeQueue.slice().reverse().map(function(type) {
     return cropTo4x4(getShape(type, 0));
   });
 };
